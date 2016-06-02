@@ -1,0 +1,20 @@
+#Ignore PSoC Creator temp and user specific files
+
+#Ignore Archive directory, bundles there
+Archive/*
+
+#User specific files
+ComponentUpdateLog.txt
+*.Xwx47
+*.cydsn/*.Xwx47
+
+#Projects optional files
+*.cydsn/codegentemp/
+*.cydsn/Generated_Source/
+*.cydsn/Export/
+
+#PSoC 5LP based projects
+*.cydsn/CortexM3/
+
+#PSoC 4 based projects
+*.cydsn/CortexM0/
