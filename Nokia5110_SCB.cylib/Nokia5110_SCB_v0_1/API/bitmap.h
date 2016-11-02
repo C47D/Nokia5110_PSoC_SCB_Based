@@ -1,8 +1,8 @@
 #ifndef `$INSTANCE_NAME`_BITMAP_H_
 #define `$INSTANCE_NAME`_BITMAP_H_
 
-/* `#START USER_BITMAPS` */
-/* Add your custom bitmaps here */
+/* Place your bitmaps here. */
+/* `#START `$INSTANCE_NAME`_Bitmaps` */
 
 /* `#END` */
 
