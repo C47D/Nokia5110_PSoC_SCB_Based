@@ -2,7 +2,7 @@
 #define `$INSTANCE_NAME`_BITMAP_H_
 
 /* Place your bitmaps here. */
-/* `#START `$INSTANCE_NAME`_Bitmaps` */
+/* `#START `$INSTANCE_NAME`_BITMAPS` */
 
 /* `#END` */
 

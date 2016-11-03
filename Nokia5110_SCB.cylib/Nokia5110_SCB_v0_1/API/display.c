@@ -153,7 +153,7 @@ void `$INSTANCE_NAME`_Chr(char ch, DRAW_TYPE_t dtype, FONT_TYPE_t ft){
         }
         `$INSTANCE_NAME`_SendData(Background[Background_cursor]); // empty space after character 
     break;
-    default:// Default Middle font
+    case Middle_Font: default:// Default Middle font
         if(dtype == DRAW_OR){  
             for(i = 0; i < 5; i++, Background_cursor++){
                 `$INSTANCE_NAME`_SendData(MiddleFont[ch-32][i] | Background[Background_cursor]);
@@ -182,7 +182,7 @@ void `$INSTANCE_NAME`_Chr(char ch, FONT_TYPE_t ft){
         }
         `$INSTANCE_NAME`_SendData(0x00);
     break;
-    default: // Default Middle font
+    case Middle_Font: default: // Default Middle font
         for(i = 0; i < 5; i++){
             `$INSTANCE_NAME`_SendData(MiddleFont[ch - 32][i]);// empty space after character
         }
@@ -201,11 +201,12 @@ void `$INSTANCE_NAME`_Chr(char ch, FONT_TYPE_t ft){
 * Return value : None.
 ***************************************************************************/
 #ifdef DRAW_OVER_BACKGROUND
-void `$INSTANCE_NAME`_Str(char* dataPtr, DRAW_TYPE_t dtype, FONT_TYPE_t ft){
+void `$INSTANCE_NAME`_Str(const char* dataPtr, DRAW_TYPE_t dtype, FONT_TYPE_t ft){
     uint16_t i;
+    char ch;
 
     while(*dataPtr){
-        char ch = *dataPtr++; 
+        ch = *dataPtr++; 
         switch(ft){
         case Small_Font: // Small font
             if (dtype == DRAW_OR){
@@ -223,7 +224,7 @@ void `$INSTANCE_NAME`_Str(char* dataPtr, DRAW_TYPE_t dtype, FONT_TYPE_t ft){
             }
             `$INSTANCE_NAME`_SendData(Background[Background_cursor++]);
         break;
-        default: //Default font Middle
+        case Middle_Font: default: //Default font Middle
             if(dtype == DRAW_OR){
                 for(i = 0; i < 5; i++, Background_cursor++){
                     `$INSTANCE_NAME`_SendData(MiddleFont[ch-32][i] | Background[Background_cursor]);
@@ -243,11 +244,12 @@ void `$INSTANCE_NAME`_Str(char* dataPtr, DRAW_TYPE_t dtype, FONT_TYPE_t ft){
     }
 }
 #else //DRAW_OVER_BACKGROUND
-void `$INSTANCE_NAME`_Str(char* dataPtr, FONT_TYPE_t ftype){
+void `$INSTANCE_NAME`_Str(const char* dataPtr, FONT_TYPE_t ftype){
     uint16_t i;
+    char ch;
 
     while(*dataPtr){
-        char ch = *dataPtr++; 
+        ch = *dataPtr++; 
         switch(ftype){
         case Small_Font: // Small font
             char ch = *dataPtr++; 
@@ -255,8 +257,8 @@ void `$INSTANCE_NAME`_Str(char* dataPtr, FONT_TYPE_t ftype){
                 `$INSTANCE_NAME`_SendData(FontLookup[ch - 32][i]);
             }
             `$INSTANCE_NAME`_SendData(0x00); // empty space after character
-        default: // Default Middle font
-            char ch = *dataPtr++; 
+        case Middle_Font: default: // Default Middle font
+            ch = *dataPtr++; 
             for(i = 0; i < 5; i++){
                 `$INSTANCE_NAME`_SendData(FontLookup[ch - 32][i]);
             }
