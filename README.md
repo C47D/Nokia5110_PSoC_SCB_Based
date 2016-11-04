@@ -12,7 +12,7 @@ Contain the function declarations and also an important define, DRAW_OVER_BACKGR
 
 ### x_Display.c
 
-Source code of the implementation, most of it taked from an old Cypress AppNote.
+Source code of the implementation, most of it taked from an old PSoC 1 AppNote [AN2152](http://www.cypress.com/documentation/application-notes/an2152-psoc-1-graphics-lcd-and-psoc-interface).
 
 
 Improvements are welcome.
