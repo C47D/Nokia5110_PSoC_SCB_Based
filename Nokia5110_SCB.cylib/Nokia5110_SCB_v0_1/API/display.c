@@ -23,8 +23,10 @@ void `$INSTANCE_NAME`_Init(void)
     uint16_t i;
 
     // Wait until SPI cycle is complete.
+#if 0
     while (`$INSTANCE_NAME`_SPI_SpiIsBusBusy()) {
     }
+#endif
 
     `$INSTANCE_NAME`_Control_Write(SET_RST_CLEAR_DC);
 
@@ -844,7 +846,9 @@ void `$INSTANCE_NAME`_Line(uint8_t xb, uint8_t yb, uint8_t xe, uint8_t ye)
 void `$INSTANCE_NAME`_SendData(uint8_t data){
     `$INSTANCE_NAME`_Control_Write(SET_RST_SET_DC);
     `$INSTANCE_NAME`_SPI_SpiUartWriteTxData(data); // Send data to display controller.
+#if 1
     while(`$INSTANCE_NAME`_SPI_SpiIsBusBusy()); // Wait until SPI cycle complete.
+#endif
 }
 
 /*--------------------------------------------------------------------------------------------------
@@ -856,8 +860,10 @@ void `$INSTANCE_NAME`_SendData(uint8_t data){
 void `$INSTANCE_NAME`_SendCommand(uint8_t command){
 
     // Wait until SPI cycle is complete.
+#if 0
     while (`$INSTANCE_NAME`_SPI_SpiIsBusBusy()) {
     }
+#endif
     
     `$INSTANCE_NAME`_Control_Write(SET_RST_CLEAR_DC);
     `$INSTANCE_NAME`_SPI_SpiUartWriteTxData(command); // Send command to display controller.
