@@ -22,6 +22,10 @@ void `$INSTANCE_NAME`_Init(void)
 {
     uint16_t i;
 
+    // Wait until SPI cycle is complete.
+    while (`$INSTANCE_NAME`_SPI_SpiIsBusy()) {
+    }
+
     `$INSTANCE_NAME`_Control_Write(SET_RST_CLEAR_DC);
 
     `$INSTANCE_NAME`_SPI_Start(); // Enable SPI
@@ -850,6 +854,11 @@ void `$INSTANCE_NAME`_SendData(uint8_t data){
 // Return value : None.
 //--------------------------------------------------------------------------------------------------*/
 void `$INSTANCE_NAME`_SendCommand(uint8_t command){
+
+    // Wait until SPI cycle is complete.
+    while (`$INSTANCE_NAME`_SPI_SpiIsBusy()) {
+    }
+    
     `$INSTANCE_NAME`_Control_Write(SET_RST_CLEAR_DC);
     `$INSTANCE_NAME`_SPI_SpiUartWriteTxData(command); // Send command to display controller.
     while(`$INSTANCE_NAME`_SPI_SpiIsBusBusy()); // Wait until SPI cycle complete.
